@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.commands.ExampleCommand;
 import main.subsystems.Arm;
 import main.subsystems.DriveTrain;
+import main.subsystems.Pneumatics;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot implements Constants {
 	public static OI oi;
 	public static DriveTrain dt;
 	public static Arm arm;
+	public static Pneumatics pn;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -41,7 +43,9 @@ public class Robot extends IterativeRobot implements Constants {
 		oi = new OI();
 		dt = new DriveTrain();
 		arm = new Arm();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		pn = new Pneumatics();
+		
+		m_chooser.addDefault("Default Auto", null);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}

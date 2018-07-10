@@ -9,7 +9,8 @@ import main.commands.drivetrain.DriveTank;
 public class DriveTrain extends Subsystem implements Constants, HardwareAdapter {
 	private DriveHelper helper = new DriveHelper(7.5);
 	public DriveTrain() {
-		
+		frontLeftDrive.setInverted(false);
+		rearRightDrive.setInverted(false);	
 	}
 	
 	public void arcadeDrive(double throttle, double heading) {
