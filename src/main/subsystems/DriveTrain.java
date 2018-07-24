@@ -21,8 +21,8 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	
 	public void tankDrive(double leftThrottle, double rightThrottle) {
 		frontLeftDrive.set(leftThrottle);
-		rearLeftDrive.set(leftThrottle);
-		frontRightDrive.set(-rightThrottle);
+		rearLeftDrive.set(-leftThrottle);
+		frontRightDrive.set(rightThrottle);
 		rearRightDrive.set(-rightThrottle);
 	}
 	

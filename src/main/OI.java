@@ -8,6 +8,9 @@
 package main;
 
 import lib.joystick.XboxController;
+import main.commands.arm.ToggleArm;
+import main.commands.popper.PopDown;
+import main.commands.popper.PopUp;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,8 +26,8 @@ public class OI implements Constants, HardwareAdapter {
 	}
 
 	public void check(){
-		//xbox.leftBumper.whenPressed(new PopUp());
-		//xbox.leftBumper.whenReleased(new PopDown());	
-		//xbox.leftBumper.whileHeld(new DriveMechanum());
+		xbox.leftBumper.whenPressed(new PopUp());
+		xbox.leftBumper.whenReleased(new PopDown());
+		xbox.rightBumper.whenPressed(new ToggleArm());
 	}
 }

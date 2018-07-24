@@ -3,6 +3,7 @@ package main;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import lib.joystick.XboxController;
 
 public interface HardwareAdapter extends Constants {
@@ -16,5 +17,8 @@ public interface HardwareAdapter extends Constants {
 	public static WPI_TalonSRX armMotorMaster = new WPI_TalonSRX(Arm_Motor_Master);
 	public static WPI_TalonSRX armMotorSlave = new WPI_TalonSRX(Arm_Motor_Slave);
 	
+	//Pneumatics
 	public static Compressor comp = new Compressor(PCM_Port);
+	public static DoubleSolenoid armPistons = new DoubleSolenoid(PCM_Port, ArmPistonPort_EXT, ArmPistonPort_RET);
+	public static DoubleSolenoid popper = new DoubleSolenoid(PCM_Port, PopperPort_EXT, PopperPort_RET);
 }

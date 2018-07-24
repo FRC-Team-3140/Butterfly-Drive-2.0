@@ -2,6 +2,9 @@ package main;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+
 public interface Constants {
 	public static int Xbox_Port = 0;
 	
@@ -30,11 +33,19 @@ public interface Constants {
 	public final ControlMode SLAVE_MODE = ControlMode.Follower;
 	public final ControlMode DISABLED = ControlMode.Disabled;
 	
+	// PNEUMATIC STATES
+	public final DoubleSolenoid.Value EXT = Value.kForward;
+	public final DoubleSolenoid.Value RET = Value.kReverse;
+	public final DoubleSolenoid.Value OFF = Value.kOff;
+	
 	// TALON BRAKE MODES
 	public final boolean BRAKE_MODE = true;
 	public final boolean COAST_MODE = false;
 	
 	// PNEUMATICS (PCM)
 	public final int PCM_Port = 1;
-	public final int Popper_Port = 2;
+	public final int PopperPort_EXT = 2;
+	public final int PopperPort_RET = 4;
+	public final int ArmPistonPort_EXT = 4;
+	public final int ArmPistonPort_RET = 5;
 }

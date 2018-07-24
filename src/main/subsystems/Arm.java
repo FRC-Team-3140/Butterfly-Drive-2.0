@@ -16,6 +16,13 @@ public class Arm extends Subsystem implements Constants, HardwareAdapter {
 		armMotorMaster.set(throttle);
 	}
 	
+	public void OpenArm() {
+		armPistons.set(RET);
+	}
+	public void CloseArm() {
+		armPistons.set(EXT);
+	}
+	
     public void initDefaultCommand() {
         setDefaultCommand(new MoveArm());
     }
