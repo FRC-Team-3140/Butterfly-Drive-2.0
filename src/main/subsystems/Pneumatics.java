@@ -6,12 +6,20 @@ import main.Constants;
 import main.HardwareAdapter;
 
 public class Pneumatics extends Subsystem implements Constants, HardwareAdapter {
+	
+	public boolean isPopped = false;
+	
 	public Pneumatics() {
 		comp.setClosedLoopControl(true);
 	}
 	
-	public void pop(DoubleSolenoid.Value v) {
-		popper.set(v);
+	public void popUp() {
+		popper.set(EXT);
+		isPopped = true;
+	}
+	public void popDown() {
+		popper.set(RET);
+		isPopped = false;
 	}
 	
 	public void initDefaultCommand() {

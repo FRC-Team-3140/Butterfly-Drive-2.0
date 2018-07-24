@@ -1,25 +1,23 @@
-package main.commands.arm;
+package main.commands.popper;
 
 import edu.wpi.first.wpilibj.command.Command;
-import main.Constants;
-import main.HardwareAdapter;
 import main.Robot;
 
 /**
  *
  */
-public class ToggleArm extends Command implements Constants, HardwareAdapter {
-	
-    public ToggleArm() {
-        requires(Robot.arm);
+public class TogglePopper extends Command {
+
+    public TogglePopper() {
+        requires(Robot.pn);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.arm.isArmOpen) {
-    		Robot.arm.CloseArm();
+    	if (Robot.pn.isPopped) {
+    		Robot.pn.popDown();
     	} else {
-    		Robot.arm.OpenArm();
+    		Robot.pn.popUp();
     	}
     }
 
