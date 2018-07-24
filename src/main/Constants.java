@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public interface Constants {
 	public static int Xbox_Port = 0;
+	public static int Xbox2_Port = 1;
 	
 	// JOYSTICK DEADBAND'S
 	public final double throttleDeadband = 0.02;
@@ -20,6 +21,8 @@ public interface Constants {
 	public final int RIGHT_Drive_Rear = 6;
 	public final int Arm_Motor_Master = 1;
 	public final int Arm_Motor_Slave = 7;
+	public final int Arm_Wheels_Master = 8;
+	public final int Arm_Wheels_Slave = 9;
 	
 	// DEFAULT TALON MODES
 	public final ControlMode DEFAULT_CTRL_MODE = ControlMode.PercentOutput;

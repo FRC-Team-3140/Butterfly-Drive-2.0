@@ -12,11 +12,16 @@ public class Arm extends Subsystem implements Constants, HardwareAdapter {
 	public Arm() {
 		armMotorSlave.follow(armMotorMaster);
 		armMotorSlave.setInverted(true);
+		armWheelSlave.follow(armMotorMaster);
+		armWheelSlave.setInverted(true);
 		CloseArm();
 	}
 	
 	public void MoveArmWithJoyStick(double throttle) {
 		armMotorMaster.set(throttle);
+	}
+	public void SpinArmWheels(double throttle) {
+		armWheelMaster.set(throttle);
 	}
 	
 	public void OpenArm() {

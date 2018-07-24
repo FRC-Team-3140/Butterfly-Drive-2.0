@@ -8,6 +8,7 @@ import lib.joystick.XboxController;
 
 public interface HardwareAdapter extends Constants {
 	public static XboxController xbox = new XboxController(Xbox_Port);
+	public static XboxController xbox2 = new XboxController(Xbox2_Port);
 	
 	public static WPI_TalonSRX rearLeftDrive = new WPI_TalonSRX(LEFT_Drive_Rear);
 	public static WPI_TalonSRX frontLeftDrive = new WPI_TalonSRX(LEFT_Drive_Front);
@@ -16,6 +17,9 @@ public interface HardwareAdapter extends Constants {
 	
 	public static WPI_TalonSRX armMotorMaster = new WPI_TalonSRX(Arm_Motor_Master);
 	public static WPI_TalonSRX armMotorSlave = new WPI_TalonSRX(Arm_Motor_Slave);
+	
+	public static WPI_TalonSRX armWheelMaster = new WPI_TalonSRX(Arm_Wheels_Master);
+	public static WPI_TalonSRX armWheelSlave = new WPI_TalonSRX(Arm_Wheels_Slave);
 	
 	//Pneumatics
 	public static Compressor comp = new Compressor(PCM_Port);

@@ -23,6 +23,9 @@ public class OI implements Constants, HardwareAdapter {
 	public static XboxController getXbox (){
 		return xbox;
 	}
+	public static XboxController getXbox2() {
+		return xbox2;
+	}
 
 	public void check(){
 		xbox.leftBumper.whenPressed(new TogglePopper());
