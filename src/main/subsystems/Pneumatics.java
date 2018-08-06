@@ -11,6 +11,7 @@ public class Pneumatics extends Subsystem implements Constants, HardwareAdapter 
 	
 	public Pneumatics() {
 		comp.setClosedLoopControl(true);
+		comp.start();
 	}
 	
 	public void popUp() {

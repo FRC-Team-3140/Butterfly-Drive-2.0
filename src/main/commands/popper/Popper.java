@@ -1,5 +1,6 @@
 package main.commands.popper;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import main.Constants;
 import main.HardwareAdapter;
@@ -8,25 +9,18 @@ import main.Robot;
 /**
  *
  */
-public class TogglePopper extends Command implements Constants, HardwareAdapter {
-
-    public TogglePopper() {
+public class Popper extends Command implements Constants, HardwareAdapter{
+	public DoubleSolenoid.Value v;
+	
+    public Popper(DoubleSolenoid.Value v) {
+        // Use requires() here to declare subsystem dependencies
         requires(Robot.pn);
+        this.v = v;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.pn.isPopped) {
-    		new PopperDown();
-    		Robot.pn.isPopped = false;
-    	} else {
-    		new PopperUp();
-    		Robot.pn.isPopped = true;
-    	}
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    	popper.set(v);
     }
 
     // Make this return true when this Command no longer needs to run execute()
