@@ -8,12 +8,14 @@
 package main;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import main.subsystems.Arm;
 import main.subsystems.DriveTrain;
+import main.subsystems.Intake;
 import main.subsystems.Pneumatics;
 
 /**
@@ -23,12 +25,13 @@ import main.subsystems.Pneumatics;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
-public class Robot extends IterativeRobot implements Constants {
+public class Robot extends TimedRobot implements Constants, HardwareAdapter{
 
-	public static OI oi;
 	public static DriveTrain dt;
 	public static Arm arm;
 	public static Pneumatics pn;
+	public static Intake in;
+	public static OI oi;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -39,10 +42,11 @@ public class Robot extends IterativeRobot implements Constants {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		dt = new DriveTrain();
 		arm = new Arm();
 		pn = new Pneumatics();
+		in = new Intake();
+		oi = new OI();
 		
 		m_chooser.addDefault("Default Auto", null);
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -117,6 +121,9 @@ public class Robot extends IterativeRobot implements Constants {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		oi.check();
+		SmartDashboard.putNumber("joystick main x", xbox.getSmoothedMainX());
+		SmartDashboard.putNumber("left back motor", rearLeftDrive.get());
 	}
 
 	/**

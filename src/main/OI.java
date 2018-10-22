@@ -8,8 +8,15 @@
 package main;
 
 import lib.joystick.XboxController;
-import main.commands.arm.ToggleArm;
-import main.commands.popper.TogglePopper;
+import main.commands.arm.CloseArm;
+import main.commands.arm.OpenArm;
+import main.commands.arm.SwitchArm;
+import main.commands.drivetrain.DriveMecanum;
+import main.commands.drivetrain.DriveTank;
+import main.commands.drivetrain.SwitchDrive;
+import main.commands.popper.PopperDown;
+import main.commands.popper.PopperUp;
+import main.commands.popper.SwitchPopper;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,7 +24,9 @@ import main.commands.popper.TogglePopper;
  */
 public class OI implements Constants, HardwareAdapter {
 	public OI() {
-		check();
+		xbox.leftBumper.whenPressed(new SwitchPopper(new PopperUp(), new PopperDown()));
+		xbox2.rightBumper.whenPressed(new SwitchArm(new CloseArm(), new OpenArm()));
+		xbox.leftBumper.whenPressed(new SwitchDrive(new DriveTank(), new DriveMecanum()));
 	}
 	
 	public static XboxController getXbox (){
@@ -28,7 +37,7 @@ public class OI implements Constants, HardwareAdapter {
 	}
 
 	public void check(){
-		xbox.leftBumper.whenPressed(new TogglePopper());
-		xbox.rightBumper.whenPressed(new ToggleArm());
+		xbox.check();
+		xbox2.check();
 	}
 }

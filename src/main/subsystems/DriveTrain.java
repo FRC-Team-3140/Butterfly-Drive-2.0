@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.Vector2d;
 import main.Constants;
 import main.HardwareAdapter;
-import main.commands.drivetrain.Drive;
 import main.commands.drivetrain.DriveTank;
 
 public class DriveTrain extends Subsystem implements Constants, HardwareAdapter {
@@ -14,14 +13,15 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	public boolean isDrivingTank = true;
 	
 	public DriveTrain() {
-		frontLeftDrive.setInverted(false);
-		rearRightDrive.setInverted(false);	
+//		frontRightDrive.setInverted(true);
+//		rearLeftDrive.setInverted(true);	
 	}
 	
 	public void driveMechanum(double throttle, double heading, double strafe) {
 		driveCartesian(helper.handleOverPower(helper.handleDeadband(strafe, strafeDeadband)), 
 				helper.handleOverPower(helper.handleDeadband(throttle, throttleDeadband)),
 				helper.handleOverPower(helper.handleDeadband(heading, headingDeadband)));
+		System.out.println("driving mecanum!!");
 	}
 	
 	public void arcadeDrive(double throttle, double heading) {
@@ -32,8 +32,8 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	
 	public void tankDrive(double leftThrottle, double rightThrottle) {
 		frontLeftDrive.set(leftThrottle);
-		rearLeftDrive.set(-leftThrottle);
-		frontRightDrive.set(rightThrottle);
+		rearLeftDrive.set(leftThrottle);
+		frontRightDrive.set(-rightThrottle);
 		rearRightDrive.set(-rightThrottle);
 	}
 	
@@ -54,6 +54,6 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	}
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new Drive());
+        setDefaultCommand(new DriveTank());
     }
 }

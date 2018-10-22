@@ -7,20 +7,36 @@ import main.HardwareAdapter;
 
 public class Pneumatics extends Subsystem implements Constants, HardwareAdapter {
 	
-	public boolean isPopped = false;
+	public boolean tankMode = true;
+	public boolean armClosed = true;
 	
 	public Pneumatics() {
-		comp.setClosedLoopControl(true);
+/*		comp.setClosedLoopControl(true);
 		comp.start();
+		popper.set(RET);
+		popper.set(OFF);
+		armPistons.set(RET);
+		armPistons.set(OFF);*/
 	}
 	
-	public void popUp() {
-		popper.set(EXT);
-		isPopped = true;
+	public void pop(DoubleSolenoid.Value v) {
+		if(v == EXT) tankMode = false;
+		else if(v == RET) tankMode = true;
+//		popper.set(v);
 	}
-	public void popDown() {
-		popper.set(RET);
-		isPopped = false;
+	
+	public void toggleArm(DoubleSolenoid.Value v) {
+		if(v == EXT) armClosed = false;
+		else if(v == RET) armClosed = true;
+//		armPistons.set(v);
+	}
+	
+	public boolean isArmClosed() {
+		return armClosed;
+	}
+	
+	public boolean isTankMode() {
+		return tankMode;
 	}
 	
 	public void initDefaultCommand() {

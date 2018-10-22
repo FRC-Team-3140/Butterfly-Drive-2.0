@@ -10,16 +10,17 @@ public interface Constants {
 	public static int Xbox2_Port = 1;
 	
 	// JOYSTICK DEADBAND'S
-	public final double throttleDeadband = 0.02;
-	public final double headingDeadband = 0.02;
-	public final double strafeDeadband = 0.02;
+	public final double throttleDeadband = 0.1;
+	public final double headingDeadband = 0.1;
+	public final double strafeDeadband = 0.1;
 	
 	// TALON SRX'S (CAN BUS)
 	public final int LEFT_Drive_Front = 2;
 	public final int LEFT_Drive_Rear = 3;
 	public final int RIGHT_Drive_Front = 5;
 	public final int RIGHT_Drive_Rear = 6;
-	public final int Arm_Motor_Master = 1;
+	
+	public final int Arm_Motor_Master = 10;
 	public final int Arm_Motor_Slave = 7;
 	public final int Arm_Wheels_Master = 8;
 	public final int Arm_Wheels_Slave = 9;

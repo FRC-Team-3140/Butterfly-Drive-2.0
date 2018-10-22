@@ -23,6 +23,6 @@ public interface HardwareAdapter extends Constants {
 	
 	//Pneumatics
 	public static Compressor comp = new Compressor(PCM_Port);
-	public static DoubleSolenoid armPistons = new DoubleSolenoid(PCM_Port, ArmPistonPort_EXT, ArmPistonPort_RET);
-	public static DoubleSolenoid popper = new DoubleSolenoid(PCM_Port, PopperPort_EXT, PopperPort_RET);
+//	public static DoubleSolenoid armPistons = new DoubleSolenoid(PCM_Port, ArmPistonPort_EXT, ArmPistonPort_RET);
+//	public static DoubleSolenoid popper = new DoubleSolenoid(PCM_Port, PopperPort_EXT, PopperPort_RET);
 }

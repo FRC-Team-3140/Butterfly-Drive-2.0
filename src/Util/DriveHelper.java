@@ -26,7 +26,6 @@ public class DriveHelper implements Constants{
     
     public double calculateTurn(double turn, boolean highGear){
     	return handleOverPower(accountForInertia(smoothTurning(handleDeadband(turn, headingDeadband), highGear)));
-    	
     }
     
     
@@ -75,9 +74,11 @@ public class DriveHelper implements Constants{
 		}
 		return turn;
 	}
+	
     public double handleDeadband(double val, double deadband) {
         return (Math.abs(val) > Math.abs(deadband)) ? val : 0.0;
     }
+    
     public double handleOverPower(double joystickVal){
     	if(Math.abs(joystickVal) > 1.0)
     		return Math.signum(joystickVal);

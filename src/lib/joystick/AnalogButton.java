@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 public class AnalogButton extends Button {
-
 	GenericHID m_joystick;
 	int m_axisNumber;
 	private double THRESHOLD = 0.5;
@@ -30,7 +29,7 @@ public class AnalogButton extends Button {
 	   * @param threshold - The threshold to trigger above (positive) or below (negative)
 	   */
 	  public AnalogButton(GenericHID joystick, int axisNumber, double threshold) {
-	  	m_joystick = joystick;
+	  	  m_joystick = joystick;
 	      m_axisNumber = axisNumber;
 	      THRESHOLD = threshold;
 	  }

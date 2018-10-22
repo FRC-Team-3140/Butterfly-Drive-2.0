@@ -18,14 +18,13 @@ public class Popper extends Command implements Constants, HardwareAdapter{
         this.v = v;
     }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	popper.set(v);
+    protected void execute() {
+    	Robot.pn.pop(v);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

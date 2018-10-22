@@ -15,8 +15,7 @@ public class MoveArm extends Command {
 
 	    // Called repeatedly when this Command is scheduled to run
 	    protected void execute() {
-	    	Robot.arm.MoveArmWithJoyStick(OI.getXbox2().getSmoothedMainY());
-	    	Robot.arm.SpinArmWheels(OI.getXbox2().getSmoothedAltY());
+	    	Robot.arm.moveArmWithJoyStick(-OI.getXbox2().getSmoothedMainY());
 	    }
 	    // Make this return true when this Command no longer needs to run execute()
 	    protected boolean isFinished() {
