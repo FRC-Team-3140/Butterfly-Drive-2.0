@@ -25,6 +25,16 @@ public interface Constants {
 	public final int Arm_Wheels_Master = 8;
 	public final int Arm_Wheels_Slave = 9;
 	
+	// DRIVETRAIN CONSTANTS 
+	public final double DT_IN_PER_SEC = 0; //TODO TEST THIS
+	public final double DT_DEGREES_PER_SEC = 0;
+	public final int PID_IDX = 0;
+	public final double DT_WHEEL_DIAM_IN = 4;
+	public final double DT_WHEEL_CIRCUM_IN = DT_WHEEL_DIAM_IN * Math.PI;
+	public enum TurnMode {
+		RIGHT, LEFT
+	}
+	
 	// DEFAULT TALON MODES
 	public final ControlMode DEFAULT_CTRL_MODE = ControlMode.PercentOutput;
 	public final boolean DEFAULT_BRAKE_MODE = true;
