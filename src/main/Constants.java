@@ -1,6 +1,7 @@
 package main;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -28,7 +29,6 @@ public interface Constants {
 	// DRIVETRAIN CONSTANTS 
 	public final double DT_IN_PER_SEC = 0; //TODO TEST THIS
 	public final double DT_DEGREES_PER_SEC = 0;
-	public final int PID_IDX = 0;
 	public final double DT_WHEEL_DIAM_IN = 4;
 	public final double DT_WHEEL_CIRCUM_IN = DT_WHEEL_DIAM_IN * Math.PI;
 	public enum TurnMode {
@@ -51,6 +51,11 @@ public interface Constants {
 	public final DoubleSolenoid.Value EXT = Value.kForward;
 	public final DoubleSolenoid.Value RET = Value.kReverse;
 	public final DoubleSolenoid.Value OFF = Value.kOff;
+	
+	// ENCODERS
+	public final FeedbackDevice MAG_ENCODER = FeedbackDevice.CTRE_MagEncoder_Relative;
+	public final int PID_IDX = 0;
+	public final int TOLERANCE_PID_IN = 1;
 	
 	// TALON BRAKE MODES
 	public final boolean BRAKE_MODE = true;

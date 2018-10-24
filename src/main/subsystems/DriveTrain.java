@@ -13,10 +13,13 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	private DriveHelper helper = new DriveHelper(7.5);
 	private EncoderHelper encHelp = new EncoderHelper();
 	public boolean isDrivingTank = true;
+	private double kP = 1; //TODO tune this uwu
 	
 	public DriveTrain() {
 //		frontRightDrive.setInverted(true);
 //		rearLeftDrive.setInverted(true);	
+		configEncoders();
+		configPID();
 	}
 	
 	/*****************
@@ -33,6 +36,14 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	/*******************
 	 * ENCODER METHODS *
 	 *******************/
+	public void configEncoders() {
+		rearLeftDrive.configSelectedFeedbackSensor(MAG_ENCODER, PID_IDX, 10);
+		rearRightDrive.configSelectedFeedbackSensor(MAG_ENCODER, PID_IDX, 10);
+		frontLeftDrive.configSelectedFeedbackSensor(MAG_ENCODER, PID_IDX, 10);
+		frontRightDrive.configSelectedFeedbackSensor(MAG_ENCODER, PID_IDX, 10);
+		resetEncoders();
+	}
+	
 	public int getDrivetrainTicksTravelled() {
 		int sum = rearLeftDrive.getSelectedSensorPosition(PID_IDX)  + rearRightDrive.getSelectedSensorPosition(PID_IDX)
 					+ frontLeftDrive.getSelectedSensorPosition(PID_IDX) + frontRightDrive.getSelectedSensorPosition(PID_IDX);
@@ -43,6 +54,35 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 		return encHelp.encoderTicksToInches(getDrivetrainTicksTravelled(), DT_WHEEL_CIRCUM_IN);
 	}
 	
+	public void resetEncoders() {
+		rearLeftDrive.setSelectedSensorPosition(0, PID_IDX, 10);
+		rearRightDrive.setSelectedSensorPosition(0, PID_IDX, 10);
+		frontLeftDrive.setSelectedSensorPosition(0, PID_IDX, 10);
+		frontRightDrive.setSelectedSensorPosition(0, PID_IDX, 10);
+	}
+	
+	public boolean isDrivetrainAtDistance(double inches) {
+		return Math.abs(getDrivetrainInchesTravelled() - inches) <= TOLERANCE_PID_IN;
+	}
+	
+	/***************
+	 * PID METHODS *
+	 ***************/
+	public void configPID() {
+		rearLeftDrive.config_kP(PID_IDX, kP, 10);
+		rearRightDrive.config_kP(PID_IDX, kP, 10);
+		frontLeftDrive.config_kP(PID_IDX, kP, 10);
+		frontRightDrive.config_kP(PID_IDX, kP, 10);
+	}
+	
+	public void drivePID(double inches) {
+		double ticks = encHelp.inchesToEncoderTicks(inches, DT_WHEEL_CIRCUM_IN);
+		rearLeftDrive.set(POSITION, ticks);
+		rearRightDrive.set(POSITION, ticks);
+		frontLeftDrive.set(POSITION, ticks);
+		frontRightDrive.set(POSITION, ticks);
+	}
+	
 	/******************
 	 * TELEOP METHODS *
 	 ******************/
@@ -51,12 +91,14 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 				helper.handleOverPower(helper.handleDeadband(throttle, throttleDeadband)),
 				helper.handleOverPower(helper.handleDeadband(heading, headingDeadband)));
 		System.out.println("driving mecanum!!");
+		isDrivingTank = false;
 	}
 	
 	public void arcadeDrive(double throttle, double heading) {
 		throttle = helper.handleOverPower(helper.handleDeadband(throttle, throttleDeadband));
 		heading = helper.handleOverPower(helper.handleDeadband(heading, headingDeadband));
 		tankDrive(throttle + heading, throttle - heading);
+		isDrivingTank = true;
 	}
 	
 	/*****************
