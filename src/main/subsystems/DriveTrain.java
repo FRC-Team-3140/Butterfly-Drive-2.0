@@ -55,10 +55,15 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	}
 	
 	public void resetEncoders() {
-		rearLeftDrive.setSelectedSensorPosition(0, PID_IDX, 10);
-		rearRightDrive.setSelectedSensorPosition(0, PID_IDX, 10);
-		frontLeftDrive.setSelectedSensorPosition(0, PID_IDX, 10);
-		frontRightDrive.setSelectedSensorPosition(0, PID_IDX, 10);
+		rLeftEnc.reset();
+		rRightEnc.reset();
+		fLeftEnc.reset();
+		fRightEnc.reset();
+	}
+	
+	public double getDistanceTravelled() {
+		double dis = (rLeftEnc.getDistance() + rRightEnc.getDistance() + fLeftEnc.getDistance() + fRightEnc.getDistance())/4; //Finds average distance of all encoders
+		return dis;
 	}
 	
 	public boolean isDrivetrainAtDistance(double inches) {

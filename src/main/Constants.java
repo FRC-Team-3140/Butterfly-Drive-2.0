@@ -63,8 +63,8 @@ public interface Constants {
 	
 	// PNEUMATICS (PCM)
 	public final int PCM_Port = 1;
-	public final int PopperPort_EXT = 2;
-	public final int PopperPort_RET = 4;
-	public final int ArmPistonPort_EXT = 4;
+	public final int PopperPort_EXT = 4;
+	public final int PopperPort_RET = 3;
+	public final int ArmPistonPort_EXT = 2;
 	public final int ArmPistonPort_RET = 5;
 }
