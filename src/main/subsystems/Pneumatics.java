@@ -11,12 +11,12 @@ public class Pneumatics extends Subsystem implements Constants, HardwareAdapter 
 	public boolean armClosed = true;
 	
 	public Pneumatics() {
-/*		comp.setClosedLoopControl(true);
+		comp.setClosedLoopControl(false);
 		comp.start();
 		popper.set(RET);
 		popper.set(OFF);
 		armPistons.set(RET);
-		armPistons.set(OFF);*/
+		armPistons.set(OFF);
 	}
 	
 	public void pop(DoubleSolenoid.Value v) {
