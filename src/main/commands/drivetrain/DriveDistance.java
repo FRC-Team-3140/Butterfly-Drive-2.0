@@ -1,4 +1,4 @@
-package main.commands.autos;
+package main.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import main.Robot;

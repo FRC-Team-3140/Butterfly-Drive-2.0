@@ -1,5 +1,12 @@
 package main.commands.autos;
 
-public class Baseline {
+import interfacesAndAbstracts.ImprovedCommandGroup;
+import main.commands.drivetrain.DrivePID;
+
+public class Baseline extends ImprovedCommandGroup {
+	
+	public Baseline() {
+		addSequential(new DrivePID(144, 4));
+	}
 
 }

@@ -22,7 +22,7 @@ public class DrivePID extends TimedCommand {
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.dt.isDrivetrainAtDistance(inches);
+		return Robot.dt.isDrivetrainAtDistance(inches) || isTimedOut();
 	}
 
 }

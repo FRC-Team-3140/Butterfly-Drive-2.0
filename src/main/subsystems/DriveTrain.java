@@ -16,8 +16,6 @@ public class DriveTrain extends Subsystem implements Constants, HardwareAdapter 
 	private double kP = 1; //TODO tune this uwu
 	
 	public DriveTrain() {
-//		frontRightDrive.setInverted(true);
-//		rearLeftDrive.setInverted(true);	
 		configEncoders();
 		configPID();
 	}
