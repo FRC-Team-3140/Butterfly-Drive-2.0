@@ -20,6 +20,7 @@ import main.commands.autos.CenterToRightSwitch;
 import main.commands.autos.DoNothing;
 import main.commands.autos.LeftToLeftSwitch;
 import main.commands.autos.RightToRightSwitch;
+import main.commands.drivetrain.TimedDrive;
 import main.subsystems.Arm;
 import main.subsystems.DriveTrain;
 import main.subsystems.Intake;
@@ -106,7 +107,7 @@ public class Robot extends TimedRobot implements Constants, HardwareAdapter{
 		System.out.println("auto" + autoChooser.getSelected());
 		System.out.println("pos" + startPos.getSelected());
 
-		boolean leftSwitch = gmsg.charAt(0) == 'L';
+		/*boolean leftSwitch = gmsg.charAt(0) == 'L';
 
 		start_pos = startPos.getSelected();
 		robot_act = autoChooser.getSelected();
@@ -133,9 +134,11 @@ public class Robot extends TimedRobot implements Constants, HardwareAdapter{
 				}
 				else autoCommand = new Baseline();					
 			}
-		}
+		}*/
+		autoCommand = new Baseline();
 		
 		if(autoCommand != null) autoCommand.start();
+		
 
 	}
 

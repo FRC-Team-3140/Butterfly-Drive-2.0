@@ -11,8 +11,8 @@ public class Pneumatics extends Subsystem implements Constants, HardwareAdapter 
 	public boolean armClosed = true;
 	
 	public Pneumatics() {
-		comp.setClosedLoopControl(false);
-		comp.start();
+//		comp.setClosedLoopControl(false);
+//		comp.start();
 		popper.set(RET);
 		popper.set(OFF);
 		armPistons.set(RET);
@@ -22,13 +22,20 @@ public class Pneumatics extends Subsystem implements Constants, HardwareAdapter 
 	public void pop(DoubleSolenoid.Value v) {
 		if(v == EXT) tankMode = false;
 		else if(v == RET) tankMode = true;
-//		popper.set(v);
+		popper.set(v);
 	}
 	
 	public void toggleArm(DoubleSolenoid.Value v) {
-		if(v == EXT) armClosed = false;
-		else if(v == RET) armClosed = true;
-//		armPistons.set(v);
+		if(v == EXT) {
+			armClosed = false;
+			System.out.print("ext");
+		}
+		else if(v == RET) {
+			armClosed = true;
+			System.out.print("ret");
+		}
+		
+		armPistons.set(v);
 	}
 	
 	public boolean isArmClosed() {
